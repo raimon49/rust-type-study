@@ -18,4 +18,8 @@ fn test_rust_type() {
     assert_eq!(2u16.pow(4), 16);             // 指数関数
     assert_eq!((-4i32).abs(), 4);            // 絶対値 -4i32.abs() と書くとメソッド呼び出しが負の値でなく正の値に呼ばれてしまう
     assert_eq!(0b101101u8.count_ones(), 4);  // ビットカウント
+
+    assert_eq!(5f32.sqrt() * 5f32.sqrt(), 5.); // IEEE規格ではちょうど5になる
+    assert_eq!((-1.01f64).floor(), -2.0);
+    assert!((-1. / std::f32::INFINITY).is_sign_negative());
 }
