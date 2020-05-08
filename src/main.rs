@@ -109,4 +109,21 @@ fn test_rust_type() {
     assert_eq!(v6.pop(), Some("miranda"));
     assert_eq!(v6.pop(), Some("carmen"));
     assert_eq!(v6.pop(), None); // 格納されている値がなくなった
+
+    // バイト文字列
+    let method = b"GET";
+    assert_eq!(method, &[b'G', b'E', b'T']); // methodは&[u8; 3] つまり3バイトのchar配列への参照
+
+    // Stringの生成
+    let bits = vec!["veni", "vidi", "vici"];
+    assert_eq!(bits.concat(), "venividivici");
+    assert_eq!(bits.join(", "), "veni, vidi, vici");
+
+    // 文字列strの評価
+    assert!("ONE".to_lowercase() == "one");
+    assert!("peanut".contains("nut"));
+    assert_eq!("    clean\n".trim(), "clean");
+    for word in "veni, vidi, vici".split(", ") {
+        assert!(word.starts_with("v"));
+    }
 }
