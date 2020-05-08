@@ -27,4 +27,12 @@ fn test_rust_type() {
     // Rustではbool型の情報量は1ビットだが、bool値のポインタを作れるようにするため1バイトまるまる使う
     assert_eq!(false as i32, 0);
     assert_eq!(true  as i32, 1);
+
+    assert_eq!('*' as i32, 42); // char型から整数型への変換
+
+    // 変換系のメソッドは結果を成功すればSome/失敗すればNoneで返される
+    assert_eq!('*'.is_alphabetic(), false);
+    assert_eq!('β'.is_alphabetic(), true);
+    assert_eq!('8'.to_digit(10), Some(8));
+    assert_eq!(std::char::from_digit(2, 10), Some('2'));
 }
