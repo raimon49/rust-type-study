@@ -14,4 +14,8 @@ fn test_rust_type() {
     assert_eq!(65535_u32 as i16,  -1_i16);
     assert_eq!(   -1_i8  as  u8, 255_u8);
     assert_eq!(  255_u8  as  i8,  -1_i8);
+
+    assert_eq!(2u16.pow(4), 16);             // 指数関数
+    assert_eq!((-4i32).abs(), 4);            // 絶対値 -4i32.abs() と書くとメソッド呼び出しが負の値でなく正の値に呼ばれてしまう
+    assert_eq!(0b101101u8.count_ones(), 4);  // ビットカウント
 }
