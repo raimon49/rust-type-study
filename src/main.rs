@@ -22,4 +22,9 @@ fn test_rust_type() {
     assert_eq!(5f32.sqrt() * 5f32.sqrt(), 5.); // IEEE規格ではちょうど5になる
     assert_eq!((-1.01f64).floor(), -2.0);
     assert!((-1. / std::f32::INFINITY).is_sign_negative());
+
+    // bool -> 整数への変換は可能だが、整数 -> boolへの変換はできない
+    // Rustではbool型の情報量は1ビットだが、bool値のポインタを作れるようにするため1バイトまるまる使う
+    assert_eq!(false as i32, 0);
+    assert_eq!(true  as i32, 1);
 }
