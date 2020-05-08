@@ -35,4 +35,12 @@ fn test_rust_type() {
     assert_eq!('β'.is_alphabetic(), true);
     assert_eq!('8'.to_digit(10), Some(8));
     assert_eq!(std::char::from_digit(2, 10), Some('2'));
+
+    let text = "I see the eigenvalue in thine eye";
+    let (head, tail) = text.split_at(21); // 2つの文字列スライスをtupleで受け取る
+    assert_eq!(head, "I see the eigenvalue ");
+    assert_eq!(tail, "in thine eye");
+
+    // タプルでは最後のカンマは有っても無くても等価として扱われる
+    assert_eq!(("Brazil", 1985,), ("Brazil", 1985));
 }
