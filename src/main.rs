@@ -68,4 +68,45 @@ fn test_rust_type() {
     let mut chaos = [3, 5, 4, 1, 2];
     chaos.sort();
     assert_eq!(chaos, [1, 2, 3, 4, 5]);
+
+    // ベクタはvec!マクロで作るかVec::newで作る
+    let mut v1 = vec![2, 3, 5, 7];
+    assert_eq!(v1.iter().fold(1, |a, b| a * b), 210);
+    v1.push(11);
+    v1.push(13);
+    assert_eq!(v1.iter().fold(1, |a, b| a * b), 30030);
+
+    let mut v2 = Vec::new();
+    v2.push("step");
+    v2.push("on");
+    v2.push("no");
+    v2.push("pets");
+    assert_eq!(v2, vec!["step", "on", "no", "pets"]);
+
+    // collectを呼んでベクタを作る場合は、どの型のコレクションを欲しいのか明示することが多い
+    let v3: Vec<i32> = (0..5).collect();
+    assert_eq!(v3, [0, 1, 2, 3, 4]);
+
+    // 配列と同様に、暗黙的に&mut [&str]スライスを借用し、スライスが持つメソッドreverseが呼ばれる
+    let mut v4 = vec!["a man", "a plan", "a canal", "panama"];
+    v4.reverse();
+    assert_eq!(v4, vec!["panama", "a canal", "a plan", "a man"]);
+
+    // ライブラリでは要素数を指定したベクタを確保して使うことが多い
+    let mut v5 = Vec::with_capacity(2);
+    assert_eq!(v5.len(), 0);
+    assert_eq!(v5.capacity(), 2);
+    v5.push(1);
+    v5.push(2);
+    assert_eq!(v5.len(), 2);
+    assert_eq!(v5.capacity(), 2);
+    v5.push(3); // capacityがあっても自動で拡張されヒープ再確保される
+    assert_eq!(v5.len(), 3);
+    assert_eq!(v5.capacity(), 4);
+
+    // ベクタからの取り出し
+    let mut v6 = vec!["carmen", "miranda"];
+    assert_eq!(v6.pop(), Some("miranda"));
+    assert_eq!(v6.pop(), Some("carmen"));
+    assert_eq!(v6.pop(), None); // 格納されている値がなくなった
 }
